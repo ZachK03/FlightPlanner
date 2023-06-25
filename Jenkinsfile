@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    //test
     stages {
         stage('Build') {
             steps {
@@ -18,6 +18,9 @@ pipeline {
                     junit '**/target/surefire-reports/TEST-*.xml'
                 }
             }
+        }
+        stage('Publish') {
+
         }
     }
 }
