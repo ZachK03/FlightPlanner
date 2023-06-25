@@ -1,4 +1,3 @@
-package Test;
 import Weather.AirportWeather;
 import Weather.WeatherConfigurator;
 

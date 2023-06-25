@@ -1,5 +1,3 @@
-package Test;
-
 import Airport.Airport;
 import Airport.AirportConfigurator;
 
