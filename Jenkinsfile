@@ -8,5 +8,16 @@ pipeline {
                 bat './mvnw clean compile'
             }
         }
+        stage('Test') {
+            steps {
+                bat './mvnw test'
+            }
+
+            post {
+                always {
+                    junit ''
+                }
+            }
+        }
     }
 }
