@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    //test
+
     stages {
         stage('Build') {
             steps {
@@ -20,7 +20,15 @@ pipeline {
             }
         }
         stage('Publish') {
+            steps {
+                bat './mvnw package'
+            }
 
+            post {
+                success {
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
         }
     }
 }
