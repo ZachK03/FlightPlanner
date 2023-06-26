@@ -34,7 +34,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 script {
-                    bat 'docker build -t zkrantz/FlightPlanner .'
+                    bat 'docker build -t zkrantz/flight-planner .'
                 }
             }
         }
