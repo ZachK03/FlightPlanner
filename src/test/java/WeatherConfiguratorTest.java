@@ -39,4 +39,25 @@ class WeatherConfiguratorTest {
         System.out.println(wx);
         assertNotNull(wx);
     }
+
+    @org.junit.jupiter.api.Test
+    void testKTPA() throws Exception {
+        AirportWeather wx = wxConfig.getWeather("KTPA");
+        System.out.println(wx);
+        assertNotNull(wx);
+    }
+
+    @org.junit.jupiter.api.Test
+    void testKMLB() throws Exception {
+        AirportWeather wx = wxConfig.getWeather("KMLB");
+        System.out.println(wx);
+        assertNotNull(wx);
+    }
+
+    @org.junit.jupiter.api.Test
+    void testKPQI() throws Exception {
+        AirportWeather wx = wxConfig.getWeather("KPQI");
+        System.out.println(wx);
+        assertNotNull(wx);
+    }
 }

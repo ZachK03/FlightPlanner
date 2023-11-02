@@ -14,7 +14,7 @@ public class WeatherConfigurator {
         aw.setLocation(identifier);
 
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=" + identifier))
+                .uri(new URI("https://aviationweather.gov/cgi-bin/data/metar.php?ids=" + identifier))
                 .build();
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -103,8 +103,23 @@ public class WeatherConfigurator {
         }
         aw.setClouds(clouds);
 
-        aw.setTemperature(Integer.valueOf(weatherData[index].substring(0,2)));
-        aw.setDewPoint(Integer.valueOf(weatherData[index].substring(3)));
+        int offset = 0;
+        String tempTemperatureString = weatherData[index].substring(0,2);
+        Character firstChar = tempTemperatureString.charAt(0);
+        if(firstChar.equals('M')) {
+            aw.setTemperature(0 - (Integer.valueOf(weatherData[index].substring(1,3))));
+            offset++;
+        } else {
+            aw.setTemperature(Integer.valueOf(tempTemperatureString));
+        }
+
+        tempTemperatureString = weatherData[index].substring(3 + offset);
+        firstChar = tempTemperatureString.charAt(0);
+        if(firstChar.equals('M')) {
+            aw.setDewPoint(0 - (Integer.valueOf(weatherData[index].substring(4 + offset))));
+        } else {
+            aw.setDewPoint(Integer.valueOf(weatherData[index].substring(3 + offset)));
+        }
         index++;
 
         double altSetting = Integer.valueOf(weatherData[index].substring(1)) / 100.0;
